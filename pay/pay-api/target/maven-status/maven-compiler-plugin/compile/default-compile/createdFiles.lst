@@ -1,0 +1,11 @@
+com\zhonghuilv\aitravel\pay\api\service\PayCoreService.class
+com\zhonghuilv\aitravel\pay\api\policy\WechatParsePolicy.class
+com\zhonghuilv\aitravel\pay\api\policy\ParsePolicy.class
+com\zhonghuilv\aitravel\pay\api\controller\OrderController.class
+com\zhonghuilv\aitravel\pay\api\payutils\XMLUtil.class
+com\zhonghuilv\aitravel\pay\api\policy\AlipayParsePolicy.class
+com\zhonghuilv\aitravel\pay\api\controller\RefundController.class
+com\zhonghuilv\aitravel\pay\api\controller\TestController.class
+com\zhonghuilv\aitravel\PayApiApplication.class
+com\zhonghuilv\aitravel\pay\api\controller\NotifyController.class
+com\zhonghuilv\aitravel\pay\api\message\TravelOrderSink.class

@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.zhonghuilv.aitravel.pay.service.supports.test.WeixinPolicyTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 16.812 s <<< FAILURE! - in com.zhonghuilv.aitravel.pay.service.supports.test.WeixinPolicyTest
+test(com.zhonghuilv.aitravel.pay.service.supports.test.WeixinPolicyTest)  Time elapsed: 0.607 s  <<< ERROR!
+com.zhonghuilv.aitravel.common.excption.DataNotAvailableException: 该小程序未配置对应商户号！
+

@@ -1,0 +1,168 @@
+---
+spring:
+  profiles : dev
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: root
+    password: root
+#  rabbitmq:
+#    host: rabbitmq.dsg.cfpamf.com
+#    port: ${rabbitmq.server.port:5672}
+#    username: admin
+#    password: admin
+  datasource:
+    name: basic
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/testshop?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    minIdle: 3
+    maxActive: 50
+    initialSize: 10
+    timeBetweenEvictionRunsMillis: 3000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 1
+    testWhileIdle: true
+    testOnBorrow: true
+    testOnReturn: true
+  jackson:
+    default-property-inclusion: non_null
+    joda-date-time-format: yyyy-MM-dd HH:mm:ss
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.0.104:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+logging:
+  level:
+   tk.mybatis: TRACE
+   com.zhonghuilv: TRACE
+   io.swagger.models.parameters: error
+#支付
+pay:
+  gateway: http://rg5jsu.natappfree.cc
+  alipay: #支付宝
+    app-id: 2019052265278989
+    api-ip: 192.168.1.6
+    sign-type: RSA2
+    business-no: 13549661677@139.com
+    #支付回调地址(所有的第三方支付平台统一)
+    notify-url: ${pay.gateway}/notify/ALIPAY
+    alipay-public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAltyiEsdtRE6QtlMwICp2sT46EPWpvg2BeNQYsFTflJq7DD4oYBlYn8HIybvohrDCp6ilTj/5/HtlvcPSxhCRNK6Ni90yZHMDA/VpkQrRwObyd/nPIHuOGmtwGhOvLGNdHQWUlTl7odkeONrPA6rfiPsx42e1PggSncPIHDmQmyO/NzysZjY+SB5zEOWUv5TTZsStsnv7rYrN1Fk31G/ppJOb5JH3y7p/5qbzBYorJ7N1Qhm1CJvGlfXQ+EsDOU0KmNhgoF/NIFr2lv3OK4FYsHD/qzqhduqQgX+5lq9adanaYoEX0kJAHSK/D4JDTtW+4Auk3poKjgs5gWeF8cyJAQIDAQAB
+    app-private-key: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCSnIlLrT0DcNZF4UcgZqhs9wffGgE4YGSSere2MDq0W9FT2Kn3axPCsRkdXy2Xyu8qArekE3Kj1+TI7SvVd83oOStdKKpG43OTYp3u/4ru5As1ySg6iwH4HMvPB4Rzh9HpnaL2pUzlFJqhXJFyf7vlJEMiguVjxvCMaHbTSj+iEI33PsthvIaRfQ+TTrKJIUArMuaqOMSr4ZdV77ZZ95W4hGOiwEj7AGYuWupCLpx12KPwGbLTwVxuF8XVicqYa+lYw4+tIidz7gjmfea0yRJ8pIakVJAM9BLIyjrn1KbAHV65L4ZVKbJOeYFjHL0N5QyMlYirPezLekb8QnpM/W+bAgMBAAECggEAHXuDFIfK3DVFsZnCzt42AmuO1quJEUg5EUfCR83dEEXii2TnkQykVaN9dG2eYob5n04aldEfXZldtZYUGYJVEtzkPoCd9VFp/Xp4XgZfbvjG1FMWVud7RuSri39sgDsQ2FTN36GQHAUPr2FJEmhjZYnsQjVmYbEw0Ft1gbnNoA47zlvFo+z/4ruRKKHhqYmUT5zXeEnpGn/RPAfRMMyvnbTpnmr4Dk0dfzGnnBkrFR9FuJFZvFUaCaYKcMVR26il79KPt3r1nUL7gBdkxoyNuoNwUpyqjbDcoKCLI1fa6hWiumcFQmF3VzX+ROlg3EKajcy5meU4+/E+sEtohX1keQKBgQDX4E8nNVIe0+Ds7tbWL/+hgd1lLaBSrl8aNrPe6VmeV/ViEqVImpUug+GHVlbFsbhLNIv3gxGOaJzeZNy3SfLovXj6RkJr7HuIyjh4udxyKkQiZu+tMR3145dwGOnHj3Ni8vnehvG0GW4JcP8UdK2NZfn2ph22SYZEgw0XJDV03QKBgQCt3IOtlLvqYMAXwrs4ae3bAr5cCHdlYCaOX80JuAZxyO/87vIQapMet+nISO5oNrTkNMNlio527N4G/V/3S9winEC+gQatcRjcAgfCITRMbLGmG8UYHV4jjGxuJ2rMgStWUA2bqD+c6hjmtUPBUF1XAuFHQtyFCgAUZGIbXffS1wKBgQCGTEqRxs8u1HtSiwdmOngavtK/9hGOPmJ1yWA/JgaVxnympZjjwR9bz7nHW0QiOvy+9JK6yXRrltM4W6Ef+cY/WlhfwsPhpj34DG3zVRU6hObcTBOBOFQ+O3djymvttWWAQk6GTIcjlspo3z4hOLEbjTxjYFaNp9H631iOc/05lQKBgGR3jAQPcbOTqw1P8v47gD5RzIzEO7JyKHWXeJWIKPkxozSnI2xHGbLjlg2tz06bZlaFAvC3a3HfmMGzQvRVeuTpJCSxzJkHRNVFuxP8Ogt7uACEBZXUyqSCLdpNntKERfW/ls1/IRtcz3zp/DhGZ1mziVizk1ixmbAu/d5Qo7fLAoGAJXOByMlwDC9iH+BmMeHzZYAreENPJH0+NUK/bcyFtREPdctnVe5pOkIbd4waqCBaHnR3/UZA4KQF8m0MBInRiX75oKImb54jHL6YDrrHEd51IPCDNasWvCluJOGA/PYxm2+CPDhKz5boYAsSV4NJQ+NX+AkiqM7KzM7ZNQRBFbU=
+    android-sign: f4db19247efcd84ea7e1905a70ea44b3
+    android-package: com.xykj.ylbmall
+    alipay-gateway: https://openapi.alipay.com/gateway.do
+    app-gateway: http://123.56.221.209:8100/
+    app-oauth2-callback:
+    # 两个占位符 appid 和 redirect_uri
+    alipay-oauth2-urltemplate: https://openauth.alipaydev.com/oauth2/appToAppAuth.htm?app_id=%s&redirect_uri=%s
+    #手续费比例 0.6%
+    pay-rate: 0.6
+    seller-id: 2088221515335546
+    resp-success: SUCCESS
+    resp-error: error
+  wechatpay:   #微信支付
+    appid: wx0a94f9a104d1d9ff,wxee9467ee3d9a8466
+    app-secret: df3c2a17b71f08f79902e738e6b7730c
+    #商务号Id 由前台传递过来 传过来的商务号与后台保存的key 不一致会导致支付失败
+    mch-id: 1499937082,1499283662
+    #密钥
+    partner-key: e07bef2234aa73cc556dd0521d15ab96,273448511869447ebd111c09db34d71f
+    #生成预订单的地址
+    prepay-url: https://api.mch.weixin.qq.com/pay/unifiedorder
+    notify-url: ${pay.gateway}/notify/WEIXIN
+    #下载账单地址
+    download-bill-url: https://api.mch.weixin.qq.com/pay/downloadbill
+    transfers-url: https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers
+    #退款URL
+    refund-url: https://api.mch.weixin.qq.com/secapi/pay/refund
+    #查询订单uRL
+    orderquery-url: https://api.mch.weixin.qq.com/pay/orderquery
+    #手续费比例 0.6%
+    pay-rate: 0.6
+    # 调用转账接口ip地址
+    spbill-create-ip: 222.240.60.23
+    #微信证书地址
+    cert-path: /home/yr/cert/apiclient_cert.p12
+    resp-success: <xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>
+    resp-error: <xml><return_code><![CDATA[FAIL]]></return_code><return_msg><![CDATA[失败]]></return_msg></xml>
+    app-info:
+      wx0a94f9a104d1d9ff: ##app
+        mch-id: 1499937082
+        partner-key: e07bef2234aa73cc556dd0521d15ab96
+      wx91e10e94eedbaa81: ## 小程序
+        mch-id: 1499217242 #1499283662
+        partner-key: 273448511869447ebd111c09db34d71f
+
+
+---
+spring:
+  profiles : test
+  rabbitmq:
+    host: 192.168.19.22
+    username: admin
+    password: 123456
+  datasource:
+    name: basic
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.19.10:3306/pay?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: Ailv123!
+    driver-class-name: com.mysql.jdbc.Driver
+    minIdle: 3
+    maxActive: 50
+    initialSize: 10
+    timeBetweenEvictionRunsMillis: 3000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 1
+    testWhileIdle: true
+    testOnBorrow: true
+    testOnReturn: true
+
+
+---
+spring:
+  profiles : prod
+  rabbitmq:
+    host: 172.18.54.30
+    username: admin
+    password: 123456
+  datasource:
+    name: basic
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://rm-wz97uanhrju61l349.mysql.rds.aliyuncs.com:3306/pay?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: travel
+    password: b2706a92
+    driver-class-name: com.mysql.jdbc.Driver
+    minIdle: 3
+    maxActive: 50
+    initialSize: 10
+    timeBetweenEvictionRunsMillis: 3000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 1
+    testWhileIdle: true
+    testOnBorrow: true
+    testOnReturn: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.18.54.30:8761/eureka,http://172.18.54.29:8761/eureka
+
+logging:
+  level:
+    root: info
+    com.zhonghuilv: trace
+    io.swagger.models.parameters: error
+  file:
+    max-history: 7
+logging.file: /home/apps/logs/${spring.application.name}.log

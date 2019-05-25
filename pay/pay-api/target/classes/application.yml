@@ -1,0 +1,114 @@
+---
+spring:
+  profiles : dev
+#  rabbitmq:
+#      host: 192.168.19.22
+#      username: admin
+#      password: 123456
+#  cloud:
+#    stream:
+#      bindings:
+#        pay-input:
+#          destination: pay.order.test
+#          group: ${spring.application.name}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.0.104:8761/eureka/
+    register-with-eureka: true
+      # 缓存注册列表
+    #fetch-registry: true
+
+logging:
+  level:
+    root: info
+    com.zhonghuilv: trace
+#security:
+#  oauth2:
+#    client:
+#      clientId: unity-client
+#      clientSecret: unity
+#  ignored: /notify/{payWay}/{appid},/**/noauth/**,/swagger**,/common**,/webjars/**,/common-resources/**,/v2/**,/favicon.ico,/swagger-resources/**
+
+
+swagger:
+  enable: true
+#  o-auth2:
+#    enable: true
+#    app-key: travel-api
+#    app-name: 基础api
+#    authorization-url: http://192.168.19.22:8840/se/oauth/authorize
+#    authorization-url:
+  apis:
+    user:
+      packageName: com.zhonghuilv.aitravel.pay.api.controller
+      author:
+        name: chenmin
+
+#server:
+#  port: 9522
+
+---
+spring:
+  profiles : test
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.19.21:8761/eureka,http://192.168.19.21:8762/eureka
+      # 缓存注册列表
+    #fetch-registry: true
+logging:
+  level:
+    root: info
+    com.zhonghuilv: trace
+  file:
+    max-history: 10
+  path: /home/apps/logs/${spring.application.name}.log
+
+swagger:
+  enable: true
+  o-auth2:
+    enable: true
+    app-key: basic-api
+    app-name: 基础api
+    authorization-url: http://192.168.19.22:8840/se/oauth/authorize
+#    authorization-url:
+  apis:
+    user:
+      packageName: com.zhonghuilv.aitravel.pay.api.controller
+      author:
+        name: zhengjing
+
+security:
+  oauth2:
+    client:
+      clientId: unity-client
+      clientSecret: unity
+  ignored: /notify/{payWay}/{appid},/**/noauth/**,/swagger**,/common**,/webjars/**,/common-resources/**,/v2/**,/favicon.ico,/swagger-resources/**
+
+---
+spring:
+  profiles : prod
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.18.54.30:8761/eureka,http://172.18.54.29:8761/eureka
+      # 缓存注册列表
+    #fetch-registry: true
+logging:
+  level:
+    root: info
+    com.zhonghuilv: trace
+  file:
+    max-history: 10
+logging.file: /home/apps/logs/${spring.application.name}.log
+
+swagger:
+  enable: false
+security:
+  oauth2:
+    client:
+      clientId: unity-client
+      clientSecret: unity
+  ignored: /notify/{payWay}/{appid},/**/noauth/**,/swagger**,/common**,/webjars/**,/common-resources/**,/v2/**,/favicon.ico,/swagger-resources/**

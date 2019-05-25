@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="pay-service" />
+        <module name="pay-api" />
+        <module name="pay-intf" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="pay" target="1.8" />
+      <module name="pay-api" target="1.8" />
+      <module name="pay-intf" target="1.8" />
+      <module name="pay-service" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="pay-api" options="-parameters" />
+      <module name="pay-intf" options="-parameters" />
+      <module name="pay-service" options="-parameters" />
+    </option>
+  </component>
+</project>

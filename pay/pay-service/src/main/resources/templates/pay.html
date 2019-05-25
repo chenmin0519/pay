@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+    <script src="/jquery.qrcode.min.js"></script>
+</head>
+<body>
+<div id="memeda"></div>
+<div id="pay-code" style="width: 256px;height: 256px;"></div>
+<button style="border-radius: 50%;background: #CCCCCC;color: red;margin: 50px;">send to alipay</button>
+</body>
+<script>
+    var formstr = 'form load....';
+    $.post("/show/get_form", function (data) {
+        formstr = data;
+
+    });
+    $('button').click(function () {
+        if (formstr.startsWith("{")) {
+            var json = $.parseJSON(formstr);
+            $("#pay-code").qrcode(json.code_url)
+        } else {
+            $("#pay-code").qrcode(formstr)
+            $("#memeda").html(formstr);
+        }
+    });
+</script>
+</html>
